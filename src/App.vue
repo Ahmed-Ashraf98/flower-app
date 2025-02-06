@@ -3,4 +3,6 @@ import { RouterLink, RouterView } from "vue-router";
 import Navbar from "@/components/business/Navbar.vue";
 </script>
 
-<template></template>
+<template>
+  <Navbar />
+</template>
