@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useStore = defineStore("favourite", {
+export const useFavouriteStore = defineStore("favourite", {
   state: () => ({
     count: 0,
   }),

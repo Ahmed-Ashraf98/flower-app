@@ -31,6 +31,27 @@
     }
   }
 
+  &__options__icon {
+    position: relative;
+    &__count {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      width: 18px;
+      height: 18px;
+      bottom: 20px;
+      left: 12px;
+      background-color: var(--primary-color);
+      color: #fff;
+      padding: 0 5px;
+      border-radius: 50px;
+    }
+  }
+
+  // Collapsed Items
+
   &__collapsed-menu.v-btn {
     height: auto;
     padding: 0;
@@ -41,6 +62,7 @@
 </style>
 
 <script lang="ts" setup>
+//  ============ [ Imports ] ==========
 import { useRoute } from "vue-router";
 import logo from "@/assets/images/logo.png";
 import heartIcon from "@/assets/icons/heart.png";
@@ -48,7 +70,13 @@ import bagIcon from "@/assets/icons/bag.png";
 import menuIcon from "@/assets/icons/menu-icon.png";
 import NavbarMenuItem from "../ui/NavbarMenuItem.vue";
 import type { NavbarItem } from "@/interfaces/navbar.interface";
+import { useCartStore } from "@/stores/cart";
+import { useFavouriteStore } from "@/stores/favourite";
 
+// ============= [ Call State ] ================
+const cartStore = useCartStore();
+const favStore = useFavouriteStore();
+//  ============ [ Logic ] ==========
 const menuItemsList: NavbarItem[] = [
   {
     title: "Home",
@@ -96,11 +124,17 @@ const isActiveLink = (routePath: string) => {
       </li>
     </ul>
     <ul class="navbar__options d-flex justify-space-center align-center">
-      <figure class="navbar__options__fav pr-5">
+      <figure class="navbar__options__icon pr-5">
         <v-img :width="20" aspect-ratio="1/1" cover :src="heartIcon"></v-img>
+        <figcaption class="navbar__options__icon__count">
+          <span>{{ favStore.getFavItemsCount }}</span>
+        </figcaption>
       </figure>
-      <figure class="navbar__options__cart">
+      <figure class="navbar__options__icon">
         <v-img :width="20" aspect-ratio="1/1" cover :src="bagIcon"></v-img>
+        <figcaption class="navbar__options__icon__count">
+          <span>{{ cartStore.getCartItemsCount }}</span>
+        </figcaption>
       </figure>
     </ul>
 
