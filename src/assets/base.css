@@ -60,6 +60,10 @@
   font-weight: normal;
 }
 
+.p-0 {
+  padding: 0;
+}
+
 body {
   font-family: Inter, Helvetica, sans-serif;
 }
